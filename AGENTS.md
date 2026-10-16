@@ -72,3 +72,12 @@
   ```powershell
   .\gradlew.bat :app:connectedDebugAndroidTest
   ```
+
+### 3. 提交后直接推送到主干
+
+用户已确认：本仓库（GitHub `LeonidasLux/gif-in-one`）提交后直接推送到 `main` 主干分支，
+无需创建分支或发起 PR，也不需要再询问确认：
+
+```powershell
+git push -u origin HEAD:main
+```
