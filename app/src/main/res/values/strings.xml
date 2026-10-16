@@ -61,6 +61,7 @@
   <string name="follow_wechat_line_1">Follow my WeChat public account [光光可爱小仙女] to download and update CuteGIF more conveniently. \nIf you have any questions or suggestions, you can also send me a message on the official account. I will read every message.</string>
   <string name="save_qrcode_open_wechat_scan">Save the QR code</string>
   <string name="gif_split">GIF Split</string>
+  <string name="gif_edit">Edit GIF</string>
   <string name="save_this_frame">Save this frame</string>
   <string name="previous_frame">Previous frame</string>
   <string name="next_frame">Next frame</string>
@@ -127,6 +128,7 @@
   <string name="compressing_gif_raw_size">Compressing GIF…(Raw size: %s)</string>
   <string name="exporting_gif_">Exporting GIF…</string>
   <string name="unable_to_load_gif">Unable to load GIF</string>
+  <string name="preparing_gif_edit_preview_d_percent">Preparing GIF for editing… (%d%%)</string>
   <string name="gif_to_video_conversion_failed">GIF to video conversion failed</string>
   <string name="wechat_follow_qrcode_saved_please_scan_first_image">My Wechat account QR code has been saved, please scan the first picture in your gallery</string>
   <string name="wechat_donate_qrcode_saved_please_scan_first_image">Wechat donation QR code has been saved, please scan the first picture in your gallery</string>

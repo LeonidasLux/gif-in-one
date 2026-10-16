@@ -17,9 +17,18 @@ import me.tasy5kg.cutegif.toolbox.Toolbox.enableDropFile
 import me.tasy5kg.cutegif.toolbox.Toolbox.logRed
 import me.tasy5kg.cutegif.toolbox.Toolbox.onClick
 import me.tasy5kg.cutegif.toolbox.Toolbox.toast
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class MainActivity : BaseActivity() {
   private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+  private fun buildTimeText(): String {
+    @Suppress("DEPRECATION")
+    val lastUpdateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime
+    return Instant.ofEpochMilli(lastUpdateTime).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+  }
 
   private fun importFileTryCatch(function: () -> Unit) {
     try {
@@ -45,6 +54,12 @@ class MainActivity : BaseActivity() {
   private val arlImportGifSplit13 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
     it?.data?.data?.let { uri -> importFileTryCatch { GifSplitActivity.start(this, uri.copyToInputFileDir()) } }
   }
+  private val arlImportGifEditDocument = registerForActivityResult(ActivityResultContracts.GetContent()) {
+    it?.let { _ -> importFileTryCatch { GifEditPrepareActivity.start(this, it.copyToInputFileDir()) } }
+  }
+  private val arlImportGifEdit13 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    it?.data?.data?.let { uri -> importFileTryCatch { GifEditPrepareActivity.start(this, uri.copyToInputFileDir()) } }
+  }
   private val arlImportGifToVideoDocument = registerForActivityResult(ActivityResultContracts.GetContent()) {
     it?.let { _ -> importFileTryCatch { GifToVideoActivity.start(this, it.copyToInputFileDir()) } }
   }
@@ -61,12 +76,20 @@ class MainActivity : BaseActivity() {
   override fun onCreateIfEulaAccepted(savedInstanceState: Bundle?) {
     setContentView(binding.root)
     setSupportActionBar(binding.materialToolbar)
-    binding.materialToolbar.subtitle = getString(R.string.version_X, BuildConfig.VERSION_NAME)
+    binding.materialToolbar.subtitle = getString(R.string.version_X, buildTimeText())
     binding.mtvBetaInfo.text = getString(R.string.beta_info, BetaEndedActivity.testVersionRemainingDays())
     binding.mcvVideoToGif.apply {
       onClick { importVideoToGif() }
       enableDropFile(this@MainActivity, "video/*") {
         VideoToGifActivity.start(
+          this@MainActivity, it.copyToInputFileDir()
+        )
+      }
+    }
+    binding.mcvGifEdit.apply {
+      onClick { importForGifEdit() }
+      enableDropFile(this@MainActivity, "image/gif") {
+        GifEditPrepareActivity.start(
           this@MainActivity, it.copyToInputFileDir()
         )
       }
@@ -127,6 +150,19 @@ class MainActivity : BaseActivity() {
       })
 
       else -> importForGifSplit(
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) INT_FILE_OPEN_WAY_13 else INT_FILE_OPEN_WAY_DOCUMENT
+      )
+    }
+  }
+
+  private fun importForGifEdit(intFileOpenWay: Int = MySettings.fileOpenWay) {
+    when (intFileOpenWay) {
+      INT_FILE_OPEN_WAY_DOCUMENT -> arlImportGifEditDocument.launch("image/gif")
+      INT_FILE_OPEN_WAY_13 -> arlImportGifEdit13.launch(Intent(MediaStore.ACTION_PICK_IMAGES).apply {
+        type = "image/gif"
+      })
+
+      else -> importForGifEdit(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) INT_FILE_OPEN_WAY_13 else INT_FILE_OPEN_WAY_DOCUMENT
       )
     }

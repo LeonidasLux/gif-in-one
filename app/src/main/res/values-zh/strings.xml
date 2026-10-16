@@ -61,6 +61,7 @@
   <string name="follow_wechat_line_1">关注我的微信公众号【光光可爱小仙女】，下载、更新小萌GIF更方便。\n如有任何问题或建议，也可在公众号发消息给我，每一条留言我都会看哦。</string>
   <string name="save_qrcode_open_wechat_scan">保存二维码，打开微信扫一扫</string>
   <string name="gif_split">GIF 拆分</string>
+  <string name="gif_edit">GIF 编辑</string>
   <string name="save_this_frame">保存本帧</string>
   <string name="previous_frame">前一帧</string>
   <string name="next_frame">后一帧</string>
@@ -127,6 +128,7 @@
   <string name="compressing_gif_raw_size">正在压缩 GIF…（压缩前：%s）</string>
   <string name="exporting_gif_">正在生成 GIF…</string>
   <string name="unable_to_load_gif">无法读取 GIF</string>
+  <string name="preparing_gif_edit_preview_d_percent">正在准备编辑预览（%d%%）</string>
   <string name="gif_to_video_conversion_failed">GIF 转视频失败</string>
   <string name="wechat_follow_qrcode_saved_please_scan_first_image">公众号二维码已保存，请扫描相册内的第一张图片</string>
   <string name="wechat_donate_qrcode_saved_please_scan_first_image">赞赏二维码已保存，请扫描相册内的第一张图片</string>

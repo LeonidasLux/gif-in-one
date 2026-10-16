@@ -8,6 +8,7 @@ import androidx.annotation.IntRange
 import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.FFprobeKit
 import com.arthenica.ffmpegkit.MediaInformation
+import me.tasy5kg.cutegif.GifEditSupport
 import me.tasy5kg.cutegif.MyApplication
 import me.tasy5kg.cutegif.MyConstants
 import me.tasy5kg.cutegif.toolbox.Toolbox.logRed
@@ -141,6 +142,27 @@ object MediaTools {
     null
   }
 
+  fun getVideoWidthHeightByFFmpeg(path: String): Pair<Int, Int>? = try {
+    mediaInformation(path)!!.firstVideoStream()!!.let { it.width.toInt() to it.height.toInt() }
+  } catch (_: Exception) {
+    null
+  }
+
+  /** Number of frames of a GIF (or any video). Slow for long videos, fine for GIFs. */
+  fun getFrameCountByFFprobe(path: String): Int? = try {
+    JSONObject(
+      FFprobeKit.execute("-v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of json \"$path\"").allLogsAsString
+    ).getJSONArray("streams").getJSONObject(0).getString("nb_read_packets").toInt()
+  } catch (_: Exception) {
+    null
+  }
+
+  fun getGifFps(path: String): Double? {
+    val frameCount = getFrameCountByFFprobe(path) ?: return null
+    val durationMs = getVideoDurationMsByFFmpeg(path) ?: return null
+    return GifEditSupport.estimateFps(frameCount, durationMs)
+  }
+
   fun mediaInformation(path: String, withFrames: Boolean = false): MediaInformation? =
     FFprobeKit.getMediaInformationFromCommand(
       "-v quiet -hide_banner -print_format json -show_format -show_streams ${("-show_frames ").toEmptyStringIf { !withFrames }}-i \"$path\""
@@ -174,11 +196,7 @@ object MediaTools {
     val nativeLibraryDir = MyApplication.appContext.applicationInfo.nativeLibraryDir
     val gifsiclePath = "${nativeLibraryDir}/libgifsicle.so"
     val gifsicleEnvp = arrayOf("LD_LIBRARY_PATH=${nativeLibraryDir}")
-    val gifsicleCmd =
-      if (outputGifPath == null)
-        "$gifsiclePath -b ${"-O3".toEmptyStringIf { !enableO3 }} --lossy=$lossy $inputGifPath"
-      else
-        "$gifsiclePath ${"-O3".toEmptyStringIf { !enableO3 }} --lossy=$lossy --output $outputGifPath $inputGifPath"
+    val gifsicleCmd = gifsicleCommandString(gifsiclePath, lossy, enableO3, inputGifPath, outputGifPath)
     return try {
       (Runtime.getRuntime().exec(gifsicleCmd, gifsicleEnvp).waitFor() == 0)
     } catch (e: Exception) {
@@ -186,6 +204,29 @@ object MediaTools {
       false
     }
   }
+
+  /**
+   * Builds the gifsicle command line.
+   * @param outputGifPath if null, the input file will be overwritten (-b).
+   */
+  fun gifsicleCommandString(
+    gifsiclePath: String,
+    lossy: Int,
+    enableO3: Boolean,
+    inputGifPath: String,
+    outputGifPath: String?,
+  ) =
+    if (outputGifPath == null)
+      "$gifsiclePath -b ${"-O3".toEmptyStringIf { !enableO3 }} --lossy=$lossy $inputGifPath"
+    else
+      "$gifsiclePath ${"-O3".toEmptyStringIf { !enableO3 }} --lossy=$lossy --output $outputGifPath $inputGifPath"
+
+  /** Builds the command converting a GIF into an mp4 used for video preview / playback. */
+  fun gifToVideoCommand(inputGifPath: String, outputArg: String, preset: String = "veryslow") =
+    "${MyConstants.FFMPEG_COMMAND_PREFIX_FOR_ALL_AN} -i \"$inputGifPath\" " +
+      "-c:v libx264 -crf 23 -preset $preset -pix_fmt yuv420p " +
+      "-vf pad=\"width=ceil(iw/2)*2:height=ceil(ih/2)*2\" -movflags +faststart " +
+      outputArg
 
   fun extractVideoFromMvimg(mvimg: String, video: String): Boolean {
     try {

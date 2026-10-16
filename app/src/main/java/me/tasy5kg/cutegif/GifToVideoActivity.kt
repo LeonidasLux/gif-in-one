@@ -8,9 +8,9 @@ import com.arthenica.ffmpegkit.FFmpegKit
 import com.arthenica.ffmpegkit.FFmpegKitConfig
 import me.tasy5kg.cutegif.MyApplication.Companion.appContext
 import me.tasy5kg.cutegif.MyConstants.EXTRA_GIF_PATH
-import me.tasy5kg.cutegif.MyConstants.FFMPEG_COMMAND_PREFIX_FOR_ALL_AN
 import me.tasy5kg.cutegif.databinding.ActivityGifToVideoBinding
 import me.tasy5kg.cutegif.toolbox.FileTools
+import me.tasy5kg.cutegif.toolbox.MediaTools
 import me.tasy5kg.cutegif.toolbox.FileTools.createNewFile
 import me.tasy5kg.cutegif.toolbox.MediaTools.getVideoDurationMsByFFmpeg
 import me.tasy5kg.cutegif.toolbox.Toolbox
@@ -52,9 +52,10 @@ class GifToVideoActivity : BaseActivity() {
     }
 
     val videoUri = createNewFile(FileTools.FileName(inputGifPath).nameWithoutExtension, "mp4")
-    val command =
-      "$FFMPEG_COMMAND_PREFIX_FOR_ALL_AN -i \"$inputGifPath\" " + "-c:v libx264 -crf 23 -preset veryslow -pix_fmt yuv420p " + "-vf pad=\"width=ceil(iw/2)*2:height=ceil(ih/2)*2\" -movflags +faststart " + // reference: https://stackoverflow.com/a/53024964
-        FFmpegKitConfig.getSafParameterForWrite(appContext, videoUri)!!
+    // reference: https://stackoverflow.com/a/53024964
+    val command = MediaTools.gifToVideoCommand(
+      inputGifPath, FFmpegKitConfig.getSafParameterForWrite(appContext, videoUri)!!
+    )
     logRed("command", command)
     FFmpegKit.executeAsync(command, {
       when {

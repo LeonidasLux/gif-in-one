@@ -49,6 +49,17 @@ class VideoToGifExportOptionsDialogFragment : DialogFragment() {
   ): View {
     _binding = DialogFragmentVideoToGifExportOptionsBinding.inflate(layoutInflater, container, false)
     clearPreviewImageCache()
+    GifEditSupport.nearestFramerateChoice(vtgActivity.gifSourceFps)?.let { fps ->
+      binding.mbtgFramerate.check(
+        when (fps) {
+          5 -> binding.mbFramerate5.id
+          10 -> binding.mbFramerate10.id
+          16 -> binding.mbFramerate16.id
+          25 -> binding.mbFramerate25.id
+          else -> binding.mbFramerate50.id
+        }
+      )
+    }
     vtgActivity.videoView.pause()
     binding.mbSave.onClick {
       vtgActivity.videoView.pause()
@@ -154,7 +165,7 @@ class VideoToGifExportOptionsDialogFragment : DialogFragment() {
         if ((values[0] * 100).toInt() == 0 && (values[1] * 100).toInt() == videoView.duration) null
         else ((values[0] * 100).toInt() to (values[1] * 100).toInt())
       },
-      inputVideoPath = inputVideoPath,
+      inputVideoPath = exportInputPath,
       cropParams = cropParams,
       shortLength = getSelectedShortLength(),
       outputSpeed = playbackSpeed,

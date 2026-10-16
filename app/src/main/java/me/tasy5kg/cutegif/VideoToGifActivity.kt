@@ -13,8 +13,10 @@ import android.view.MotionEvent
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import me.tasy5kg.cutegif.MyConstants.EXTRA_ADD_TEXT_RENDER
+import me.tasy5kg.cutegif.MyConstants.EXTRA_EXPORT_INPUT_PATH
 import me.tasy5kg.cutegif.MyConstants.EXTRA_VIDEO_PATH
 import me.tasy5kg.cutegif.databinding.ActivityVideoToGifBinding
+import me.tasy5kg.cutegif.toolbox.MediaTools
 import me.tasy5kg.cutegif.toolbox.MediaTools.getVideoDurationByAndroidSystem
 import me.tasy5kg.cutegif.toolbox.Toolbox.boundRange
 import me.tasy5kg.cutegif.toolbox.Toolbox.constraintBy
@@ -44,6 +46,16 @@ class VideoToGifActivity : BaseActivity() {
 
   val cropParams get() = CropParams(binding.cropImageView.cropRect!!)
   val inputVideoPath by lazy { intent.getExtra<String>(EXTRA_VIDEO_PATH) }
+  val exportInputPath by lazy {
+    if (intent.hasExtra(EXTRA_EXPORT_INPUT_PATH)) intent.getExtra<String>(EXTRA_EXPORT_INPUT_PATH) else inputVideoPath
+  }
+
+  /** True when opened via [startForGifEdit]: the video is a preview of an mp4-converted GIF. */
+  private val isGifEditMode by lazy { intent.hasExtra(EXTRA_EXPORT_INPUT_PATH) }
+
+  /** fps of the GIF being edited (only set in GIF edit mode). */
+  val gifSourceFps: Double? by lazy { if (isGifEditMode) MediaTools.getGifFps(exportInputPath) else null }
+  private val gifEditSourceWH: Pair<Int, Int>? by lazy { if (isGifEditMode) MediaTools.getVideoWidthHeightByFFmpeg(exportInputPath) else null }
 
   val videoView by lazy { binding.videoView }
   val rangeSlider by lazy { binding.rangeSlider } // value 1.0f == 100ms
@@ -91,6 +103,7 @@ class VideoToGifActivity : BaseActivity() {
   @SuppressLint("ClickableViewAccessibility")
   override fun onCreateIfEulaAccepted(savedInstanceState: Bundle?) {
     setContentView(binding.root)
+    if (isGifEditMode) binding.mtvEditTitle.text = getString(R.string.gif_edit)
     // CropImageView cannot automatically resize itself when the parent layout changes size. Help it resize here.
     binding.rl.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
       binding.cropImageView.layoutParams.width = binding.rl.width
@@ -179,7 +192,7 @@ class VideoToGifActivity : BaseActivity() {
       playbackParams = playbackParams.setSpeed(playbackSpeed)
     }
     if (notInitializedBefore) {
-      videoWH = with(mediaPlayer) { videoWidth to videoHeight }
+      videoWH = gifEditSourceWH ?: with(mediaPlayer) { videoWidth to videoHeight }
       binding.cropImageView.apply {
         setBackgroundColor(Color.TRANSPARENT)
         setImageBitmap(Bitmap.createBitmap(videoWH.first, videoWH.second, Bitmap.Config.ALPHA_8)
@@ -290,6 +303,13 @@ class VideoToGifActivity : BaseActivity() {
       Intent(context, VideoToGifActivity::class.java).putExtra(
         EXTRA_VIDEO_PATH, inputVideoPath
       )
+    )
+
+    /** Opens the editor for an existing GIF: [previewMp4Path] is only used for preview, the GIF itself is edited. */
+    fun startForGifEdit(context: Context, gifPath: String, previewMp4Path: String) = context.startActivity(
+      Intent(context, VideoToGifActivity::class.java)
+        .putExtra(EXTRA_VIDEO_PATH, previewMp4Path)
+        .putExtra(EXTRA_EXPORT_INPUT_PATH, gifPath)
     )
 
     fun intentAddTextResult(textRender: TextRender) = Intent().putExtra(EXTRA_ADD_TEXT_RENDER, textRender)

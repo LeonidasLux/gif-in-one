@@ -76,12 +76,49 @@
       </com.google.android.material.card.MaterialCardView>
 
       <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvGifSplit"
+        android:id="@+id/mcvGifEdit"
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/light"
+        android:clickable="true"
+        android:focusable="true"
+        app:strokeColor="@color/green_dark">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:layout_marginStart="16dp"
+          android:gravity="center_vertical"
+          android:orientation="horizontal">
+
+          <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.75"
+            app:srcCompat="@drawable/baseline_edit_24"
+            app:tint="@color/green_dark" />
+
+          <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gif_edit"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvGifSplit"
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/light"
         android:clickable="true"
         android:focusable="true"
