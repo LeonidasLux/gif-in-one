@@ -82,15 +82,23 @@
 git push -u origin HEAD:main
 ```
 
-### 4. 用户说"打包"时直接构建 APK
+### 4. 用户说"打包"时的完整流程：更新版本号 → 提交 → 构建 APK
 
-用户提到"打包 / 打包 apk"时，直接执行 release 构建即可：不要询问确认，
+用户提到"打包 / 打包 apk"时，按以下步骤直接执行，不要询问确认，
 也不需要安装到模拟器或做额外验证（无需执行规则 1 的安装步骤）：
 
-```powershell
-$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
-.\gradlew.bat :app:assembleRelease
-```
+1. 更新 [app/build.gradle](app/build.gradle) 中的版本号（取当前时间）：
+   - `versionName`：`yy.MMdd.HHmm` 格式，如 `26.1017.0100`（年.月日.时分）
+   - `versionCode`：`yy*10000000 + MM*100000 + dd*1000 + HH*100 + mm`，
+     与 versionName 同一时间推导，保证递增（手机覆盖安装才能正常更新）
+2. 提交所有未提交的改动（含版本号变更），message 形如
+   `chore(release): 更新版本号至 26.1017.0100`，并按规则 3 直推 `main`
+3. 构建 release APK：
 
-构建完成后把产物路径告知用户：`app\build\outputs\apk\release\`
-（`arm64-v8a` 供真机、`x86_64` 供模拟器）。
+   ```powershell
+   $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
+   .\gradlew.bat :app:assembleRelease
+   ```
+
+4. 把产物路径告知用户：`app\build\outputs\apk\release\`
+   （`arm64-v8a` 供真机、`x86_64` 供模拟器）
