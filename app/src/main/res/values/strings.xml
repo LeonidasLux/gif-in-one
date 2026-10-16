@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">CuteGIF</string>
+  <string name="app_name">GIF in One</string>
   <string name="tap_anywhere_to_select_a_video">Tap to select video</string>
   <string name="about">About</string>
   <string name="close">Close</string>
@@ -11,17 +11,15 @@
   <string name="done">Done</string>
   <string name="share">Share</string>
   <string name="version_X">Version %s</string>
+  <string name="based_on_cutegif_">GIF in One is a derivative work based on the open-source project CuteGIF (GPL-3.0). Thanks to the original project and its author.</string>
   <string name="_144p">144P</string>
   <string name="_240p">240P</string>
   <string name="_320p">320P</string>
-  <string name="join_qq_group_toast">QQ group ID has been copied to the clipboard</string>
   <string name="convert_video_to_gif_simple_and_fast_in_main">Video to GIF</string>
   <string name="crop_free">Free</string>
   <string name="crop_square">Square</string>
   <string name="gif_duration_s">GIF duration: %s seconds</string>
   <string name="effect_needs_to_be_viewed_after_exporting">ℹ️ The effects of %s needs to be viewed after exporting</string>
-  <string name="beta_info">The current version is for testing purposes only and may contain bugs. \nThe internal test will end in %d days. After the end, please download the official version from my WeChat account.</string>
-  <string name="developer_name_email">Developer: 沈科光 (tasy5kg@qq.com)</string>
   <string name="files">Files</string>
   <string name="photos">Photos</string>
   <string name="float_window">Window</string>
@@ -32,22 +30,13 @@
   <string name="rotate">Rotate</string>
   <string name="color">Color</string>
   <string name="input_text_here">Input text here</string>
-  <string name="sorry_cutegif_error">Sorry, there was an error while running CuteGIF. \nI hope you can send the problem log to the developer\'s WeChat public account [光光可爱小仙女] so that this error can be fixed.</string>
+  <string name="sorry_app_error">Sorry, there was an error while running GIF in One. \nYou can copy the log below and report it to the developer.</string>
   <string name="error_log">Error log</string>
   <string name="copy_to_clipboard">Copy to clipboard</string>
-  <string name="follow_wechat_to_feedback">Follow my WeChat public account [光光可爱小仙女] to provide feedback</string>
   <string name="exit">Exit</string>
-  <string name="beta_ended_please_follow_wechat">The internal testing of the current version has ended. Please follow my WeChat official account and download the official version to continue using it.</string>
-  <string name="follow_wechat_to_download_release">Follow my WeChat account</string>
-  <string name="donate">Donate</string>
-  <string name="donate_support">Donate</string>
-  <string name="if_you_like_cutegif_please_donate">If you like CuteGIF, please donate to me to support me in developing more useful Apps!</string>
-  <string name="thanks_to_the_following_donated_users">Thanks to the following donated users:</string>
-  <string name="you_can_write_your_nickname">You can write your nickname in the payment remark so that your nickname will be displayed in this list when this software is updated.</string>
-  <string name="save_donate_qrcode_open_wechat_scan">Save the QR code</string>
   <string name="_eula_">"User Agreement"</string>
-  <string name="eula_line_1">Welcome to use CuteGIF!</string>
-  <string name="eula_line_2">CuteGIF is an open source, ad-free, free-to-use GIF processing software developed by 沈科光.</string>
+  <string name="eula_line_1">Welcome to use GIF in One!</string>
+  <string name="eula_line_2">GIF in One is an open source, ad-free, free-to-use GIF processing software.</string>
   <string name="eula_line_3">Disclaimer: This software is provided as is without warranty of any kind. The author is not responsible for any damages, claims or other liability arising out of the use or otherwise of the software.</string>
   <string name="_privacy_policy_">"Privacy Policy"</string>
   <string name="privacy_policy_line_1">This software does not connect to the Internet, does not require any permissions, and does not collect any personal information.</string>
@@ -56,10 +45,6 @@
   <string name="gif_saved_to_gallery">GIF saved to gallery</string>
   <string name="video_saved_to_gallery">Video saved to gallery</string>
   <string name="delete">Delete</string>
-  <string name="follow_wechat">Follow my WeChat public account</string>
-  <string name="follow_my_wechat">Follow my WeChat public account</string>
-  <string name="follow_wechat_line_1">Follow my WeChat public account [光光可爱小仙女] to download and update CuteGIF more conveniently. \nIf you have any questions or suggestions, you can also send me a message on the official account. I will read every message.</string>
-  <string name="save_qrcode_open_wechat_scan">Save the QR code</string>
   <string name="gif_split">GIF Split</string>
   <string name="gif_edit">Edit GIF</string>
   <string name="save_this_frame">Save this frame</string>
@@ -72,7 +57,7 @@
   <string name="cancel">Cancel</string>
   <string name="_import">Import</string>
   <string name="gif_to_video">GIF to Video</string>
-  <string name="source_code_of_cutegif_">CuteGIF source code:</string>
+  <string name="source_code_of_gif_in_one_">GIF in One source code:</string>
   <string name="open_source_project_used_">This software uses the following open source projects:</string>
   <string name="edit_video">Edit video</string>
   <string name="export">Export</string>
@@ -130,19 +115,12 @@
   <string name="unable_to_load_gif">Unable to load GIF</string>
   <string name="preparing_gif_edit_preview_d_percent">Preparing GIF for editing… (%d%%)</string>
   <string name="gif_to_video_conversion_failed">GIF to video conversion failed</string>
-  <string name="wechat_follow_qrcode_saved_please_scan_first_image">My Wechat account QR code has been saved, please scan the first picture in your gallery</string>
-  <string name="wechat_donate_qrcode_saved_please_scan_first_image">Wechat donation QR code has been saved, please scan the first picture in your gallery</string>
-  <string name="wechat_donate_qrcode_saved_wechat_launch_failed">Wechat donation QR code has been saved</string>
-  <string name="wechat_follow_qrcode_saved_wechat_launch_failed">My Wechat account QR code has been saved</string>
   <string name="crop_4_3" translatable="false">4:3</string>
   <string name="crop_16_9" translatable="false">16:9</string>
-  <string name="qq_group_id" translatable="false">729757909</string>
-  <string name="_donated_users_list" translatable="false">\@小二哥哥 @杨啊楊 @华 @Z*g @张先森 @禽兽养殖二厂</string>
-  <string name="github_com_tasy5kg_cutegif" translatable="false">github.com/tasy5kg/CuteGIF</string>
+  <string name="github_com_leonidaslux_gif_in_one" translatable="false">github.com/LeonidasLux/gif-in-one</string>
+  <string name="_cutegif_github_url" translatable="false">https://github.com/tasy5kg/CuteGIF</string>
   <string name="_open_source_project_used_links" translatable="false">github.com/androidx/androidx\ngithub.com/material-components/material-components-android\ngithub.com/bumptech/glide\ngithub.com/CanHub/Android-Image-Cropper\ngithub.com/arthenica/ffmpeg-kit\ngithub.com/Tencent/MMKV\ngithub.com/kohler/gifsicle\ngithub.com/santaevpavel/OutlineSpan</string>
   <string name="eula_line_addition">This software is for learning and communication purposes. It does not access the network and does not provide Internet information services.</string>
-  <string name="_my_wechat_public_account_name" translatable="false">光光可爱小仙女</string>
-  <string name="buy_me_a_cup_of_coffee">Buy me a cup of coffee</string>
   <string name="import_file_failed_please_try">File read failed, please try switching the file picker in the menu</string>
   <string name="save_as_video">Save as video</string>
   <string name="speed_warning_slower">ℹ️ For performance reasons, the current preview plays slower than the speed you selected. When exported later, the GIF will be generated at the speed you selected.</string>

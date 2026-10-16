@@ -1,55 +1,28 @@
 > #### English | [简体中文](/assets/zh-rCN/README.md)
 
-# CuteGIF
+# GIF in One
 
-CuteGIF is a simple and easy-to-use video to GIF tool for Android.
-
-Latest version: `2024.3`.
-
----
+GIF in One is a simple and easy-to-use video & GIF processing tool for Android,
+based on the open-source project [CuteGIF](https://github.com/tasy5kg/CuteGIF).
 
 ## Features
 
 - Video to GIF, simple and easy-to-use
+- Edit a GIF directly: trim, crop, speed, add text, color key, export options & more
 - Video editing: crop, trim, speed up, add text & remove background
 - Custom GIF resolution, clarity, color quality, frame rate & more
 - Preview the effect before exporting
-- GIF split and GIF to Video supported
+- GIF split and GIF to video supported
 - Motion Photo to GIF
 
----
+## Build
 
-## Screenshots
+```bash
+./gradlew :app:assembleRelease
+```
 
-<img src="assets/en/img1.webp" width="240"/> <img src="assets/en/img2.webp" width="240"/> <img src="assets/en/img3.webp" width="240"/> <img src="assets/en/img6.webp" width="240"/>
-
----
-
-## Praise wall
-
-<img src="assets/en/img11.webp" width="480"/>
-
-(The text in this image was translated from Simplified Chinese by AI.)
-
----
-
-## APK download
-
-Please download APK file at [GitHub Releases](https://github.com/tasy5kg/CuteGIF/releases/latest).
-
-Furthermore, if you use WeChat, please consider following my official account `光光可爱小仙女`. In this way, you can receive push notifications when new
-versions of CuteGIF are available.
-
----
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/chart?repos=tasy5kg/CuteGIF&type=date&legend=top-left)](https://www.star-history.com/?repos=tasy5kg%2FCuteGIF&type=date&legend=top-left)
-
----
-
-## Copyright
-
-沈科光 ([tasy5kg@qq.com](mailto:tasy5kg@qq.com)). 2022-2024.
+## License
 
 This project is licensed under the [GPL-3.0 license](/COPYING).
+It is a derivative work of the open-source project [CuteGIF](https://github.com/tasy5kg/CuteGIF),
+with thanks to the original project and its author.

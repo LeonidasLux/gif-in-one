@@ -1,51 +1,27 @@
 > #### [English](/README.md) | 简体中文
 
-# 小萌GIF
+# GIF in One
 
-小萌GIF 是一款简洁好用的 Android 端视频转 GIF 工具。
+GIF in One 是一款简洁好用的 Android 端视频与 GIF 处理工具，基于开源项目
+[CuteGIF](https://github.com/tasy5kg/CuteGIF) 二次开发。
 
-最新版本：`2024.3`。
+## 功能
 
----
+- 视频转 GIF，简单易用
+- 直接编辑 GIF：截取、裁剪、调速、添加文字、抠图、导出选项等
+- 视频编辑：裁剪画幅、截取时长、调速、添加文字、去背景
+- 自定义 GIF 分辨率、清晰度、色彩品质、帧率等
+- 导出前预览效果
+- 支持 GIF 拆分与 GIF 转视频
+- 动态照片转 GIF
 
-## 使用截图与功能特色
+## 构建
 
-<img src="img1.webp" width="480"/>
+```bash
+./gradlew :app:assembleRelease
+```
 
-<img src="img2.webp" width="480"/>
+## 开源协议
 
-<img src="img3.webp" width="480"/>
-
-<img src="img6.webp" width="480"/>
-
----
-
-## 好评墙
-
-<img src="img11.webp" width="480"/>
-
----
-
-## 安装包下载
-
-<img src="img4.webp" width="480"/>
-
-请微信扫码关注我的公众号`光光可爱小仙女`，点击聊天框底部的`小萌GIF`菜单，即可收到下载链接。
-
-关注公众号的好处是：下载链接不限速，并且有新版本更新时，可以收到推送提醒。
-
-当然，如果您不使用微信，也可以在 [GitHub Releases](https://github.com/tasy5kg/CuteGIF/releases/latest) 手动下载安装包。
-
----
-
-## Star 数据历史
-
-[![Star History Chart](https://api.star-history.com/chart?repos=tasy5kg/CuteGIF&type=date&legend=top-left)](https://www.star-history.com/?repos=tasy5kg%2FCuteGIF&type=date&legend=top-left)
-
----
-
-## 版权
-
-沈科光（[tasy5kg@qq.com](mailto:tasy5kg@qq.com)）。2022-2024。
-
-本项目以 [GPL-3.0 许可](/COPYING) 开源。
+本项目采用 [GPL-3.0 协议](/COPYING)，基于开源项目
+[CuteGIF](https://github.com/tasy5kg/CuteGIF) 二次开发，感谢原项目及其作者。

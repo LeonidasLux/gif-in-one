@@ -92,80 +92,24 @@
 
         <com.google.android.material.button.MaterialButton
           android:id="@+id/mbChooseFileWayDocument"
-          style="@style/Theme.CuteGif.SegmentedButton"
+          style="@style/Theme.GifInOne.SegmentedButton"
           android:animateLayoutChanges="true"
           android:text="@string/files" />
 
         <com.google.android.material.button.MaterialButton
           android:id="@+id/mbChooseFileWayGallery"
-          style="@style/Theme.CuteGif.SegmentedButton"
+          style="@style/Theme.GifInOne.SegmentedButton"
           android:animateLayoutChanges="true"
           android:text="@string/photos" />
 
         <com.google.android.material.button.MaterialButton
           android:id="@+id/mbChooseFileWay13"
-          style="@style/Theme.CuteGif.SegmentedButton"
+          style="@style/Theme.GifInOne.SegmentedButton"
           android:animateLayoutChanges="true"
           android:text="@string/float_window" />
 
 
       </com.google.android.material.button.MaterialButtonToggleGroup>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <include layout="@layout/view_divider_horizontal" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:id="@+id/llcFollowWechat"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?android:attr/selectableItemBackground"
-      android:clickable="true"
-      android:focusable="true"
-      android:gravity="center_vertical"
-      android:minHeight="64dp"
-      android:orientation="vertical"
-      android:paddingHorizontal="16dp">
-
-      <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/follow_my_wechat"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-      <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/_my_wechat_public_account_name"
-        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-        android:textColor="@color/grey" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <include layout="@layout/view_divider_horizontal" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-      android:id="@+id/llcDonate"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?android:attr/selectableItemBackground"
-      android:clickable="true"
-      android:focusable="true"
-      android:gravity="center_vertical"
-      android:minHeight="64dp"
-      android:orientation="vertical"
-      android:paddingHorizontal="16dp">
-
-      <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/donate_support"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-      <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/buy_me_a_cup_of_coffee"
-        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-        android:textColor="@color/grey" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <include layout="@layout/view_divider_horizontal" />
@@ -182,15 +126,14 @@
       tools:text="用户协议 | 隐私政策 | 开源许可" />
 
     <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/mtvBasedOn"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="6dp"
+      android:layout_marginTop="16dp"
       android:gravity="center"
       android:paddingHorizontal="16dp"
-      android:text="@string/developer_name_email"
       android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-      android:textColor="@color/grey"
-      android:textIsSelectable="true" />
+      android:textColor="@color/grey" />
 
 
     <com.google.android.material.button.MaterialButton

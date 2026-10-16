@@ -4,8 +4,8 @@
 
 ## 项目概况
 
-- **CuteGIF**：Android 视频转 GIF 工具，Kotlin + ViewBinding（无 Compose）。
-- 应用 ID `me.tasy5kg.cutegif`，入口 `MainActivity`。
+- **GIF in One**：Android 视频/GIF 处理工具（基于开源项目 CuteGIF 二次开发，GPL-3.0），Kotlin + ViewBinding（无 Compose）。
+- 应用 ID `com.leonidaslux.gifinone`，入口 `MainActivity`。
 - Gradle Wrapper 8.4 + AGP 8.3.1，minSdk 29 / targetSdk 34 / compileSdk 34。
 - `com.arthenica:ffmpeg-kit-full-gpl` 已从 Maven Central 下架，`settings.gradle` 中的阿里云镜像
   （`https://maven.aliyun.com/repository/public`）用于解析该依赖，不要移除。
@@ -48,7 +48,7 @@
 4. **重新启动应用**：
 
    ```powershell
-   & $adb -s emulator-5554 shell am start -n me.tasy5kg.cutegif/.MainActivity
+   & $adb -s emulator-5554 shell am start -n com.leonidaslux.gifinone/.MainActivity
    ```
 
 补充说明：
