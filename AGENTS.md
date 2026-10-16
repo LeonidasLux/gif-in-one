@@ -81,3 +81,16 @@
 ```powershell
 git push -u origin HEAD:main
 ```
+
+### 4. 用户说"打包"时直接构建 APK
+
+用户提到"打包 / 打包 apk"时，直接执行 release 构建即可：不要询问确认，
+也不需要安装到模拟器或做额外验证（无需执行规则 1 的安装步骤）：
+
+```powershell
+$env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
+.\gradlew.bat :app:assembleRelease
+```
+
+构建完成后把产物路径告知用户：`app\build\outputs\apk\release\`
+（`arm64-v8a` 供真机、`x86_64` 供模拟器）。
