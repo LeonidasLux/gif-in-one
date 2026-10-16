@@ -20,6 +20,7 @@ import me.tasy5kg.cutegif.toolbox.MediaTools
 import me.tasy5kg.cutegif.toolbox.MediaTools.getVideoDurationByAndroidSystem
 import me.tasy5kg.cutegif.toolbox.Toolbox.boundRange
 import me.tasy5kg.cutegif.toolbox.Toolbox.constraintBy
+import me.tasy5kg.cutegif.toolbox.Toolbox.defaultTextSizePx
 import me.tasy5kg.cutegif.toolbox.Toolbox.getExtra
 import me.tasy5kg.cutegif.toolbox.Toolbox.msToMinSecDs
 import me.tasy5kg.cutegif.toolbox.Toolbox.newRunnableWithSelf
@@ -245,7 +246,8 @@ class VideoToGifActivity : BaseActivity() {
         mMediaPlayer.pause()
         getAddTextResult.launch(
           AddTextActivity.startIntent(
-            this@VideoToGifActivity, inputVideoPath, videoView.currentPosition.toLong(), textRender
+            this@VideoToGifActivity, inputVideoPath, videoView.currentPosition.toLong(),
+            textRender ?: TextRender.DEFAULT.copy(size = defaultTextSizePx(videoWH.first, videoWH.second))
           ), sceneTransitionAnimationOptionBuilder(this@VideoToGifActivity, binding.acivText, binding.videoView)
         )
       }

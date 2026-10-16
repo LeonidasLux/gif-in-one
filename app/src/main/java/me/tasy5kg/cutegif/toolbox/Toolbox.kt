@@ -361,6 +361,12 @@ object Toolbox {
   }
 
   /** Example: 123456L -> "2:03.4" */
+  /**
+   * 默认的加文字字号（px）。以 1080 短边为基准按分辨率等比缩放（36f 为 TextRender.DEFAULT 的原字号），
+   * 避免小尺寸素材（如 GIF）的默认文字相对画面过大。
+   */
+  fun defaultTextSizePx(width: Int, height: Int) = (36f * min(width, height) / 1080f).coerceIn(4f, 36f)
+
   fun msToMinSecDs(ms: Int) = with(ms / 1000f) {
     "${(this / 60).toInt()}:${
       String.format(
