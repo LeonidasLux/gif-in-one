@@ -27,9 +27,6 @@ import com.leonidaslux.gifinone.update.AppUpdateInfo
 import com.leonidaslux.gifinone.update.AppUpdateInstaller
 import com.leonidaslux.gifinone.update.AppUpdateManager
 import com.leonidaslux.gifinone.update.InstallPermissionRequiredException
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity() {
@@ -44,12 +41,6 @@ class MainActivity : BaseActivity() {
         mainHandler.postDelayed(this, 800L)
       }
     }
-  }
-
-  private fun buildTimeText(): String {
-    @Suppress("DEPRECATION")
-    val lastUpdateTime = packageManager.getPackageInfo(packageName, 0).lastUpdateTime
-    return Instant.ofEpochMilli(lastUpdateTime).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
   }
 
   private fun importFileTryCatch(function: () -> Unit) {
@@ -110,7 +101,7 @@ class MainActivity : BaseActivity() {
   override fun onCreateIfEulaAccepted(savedInstanceState: Bundle?) {
     setContentView(binding.root)
     setSupportActionBar(binding.materialToolbar)
-    binding.materialToolbar.subtitle = getString(R.string.version_X, buildTimeText())
+    binding.materialToolbar.subtitle = getString(R.string.version_X, BuildConfig.VERSION_NAME)
     binding.mbUpdateAction.onClick {
       handleUpdateAction()
     }

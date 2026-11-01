@@ -150,4 +150,14 @@
   <string name="update_banner_available">发现新版本</string>
   <string name="update_banner_downloading">正在下载更新</string>
   <string name="update_banner_downloaded">更新已下载</string>
+  <string name="quick_start">快速开始</string>
+  <string name="motion_photo_section">动态照片</string>
+  <string name="gif_toolbox">GIF 工具箱</string>
+  <string name="choose_video">选择视频</string>
+  <string name="video_to_motion_photo_hint">把视频转换成相册动态照片</string>
+  <string name="gif_to_motion_photo_hint">把 GIF 转换成相册动态照片</string>
+  <string name="gif_edit_hint">裁剪、调速、文字与抠图</string>
+  <string name="gif_split_hint">将 GIF 逐帧导出为图片</string>
+  <string name="gif_to_video_hint">把 GIF 转换为 MP4 视频</string>
+  <string name="mvimg_to_gif_hint">从动态照片中提取视频</string>
 </resources>

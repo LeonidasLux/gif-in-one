@@ -24,9 +24,9 @@
   <com.google.android.material.card.MaterialCardView
     android:id="@+id/mcvUpdateBanner"
     style="@style/Widget.Material3.CardView.Filled"
-    android:layout_width="288dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
     android:layout_marginTop="12dp"
     android:backgroundTint="@color/grey_one_in_sixteen"
     android:visibility="gone"
@@ -91,281 +91,465 @@
   <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="1">
+    android:layout_weight="1"
+    android:fillViewport="true">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-      android:layout_width="288dp"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:gravity="center"
-      android:orientation="vertical">
+      android:orientation="vertical"
+      android:paddingHorizontal="20dp"
+      android:paddingTop="16dp"
+      android:paddingBottom="24dp">
+
+      <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.08"
+        android:text="@string/quick_start"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+        android:textColor="@color/green_dark" />
 
       <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcvVideoToGif"
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="match_parent"
-        android:layout_height="288dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/light"
+        android:layout_height="176dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/green_card_surface"
         android:clickable="true"
         android:focusable="true"
-        app:strokeColor="@color/green_light">
+        app:strokeColor="@color/green_dark">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:gravity="center"
-          android:orientation="vertical">
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:padding="20dp">
+
+          <FrameLayout
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:background="@drawable/bg_home_primary_icon">
+
+            <androidx.appcompat.widget.AppCompatImageView
+              android:layout_width="46dp"
+              android:layout_height="46dp"
+              android:layout_gravity="center"
+              android:importantForAccessibility="no"
+              app:srcCompat="@drawable/ic_baseline_video_library_24"
+              app:tint="@color/green_light" />
+          </FrameLayout>
+
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="@string/convert_video_to_gif_simple_and_fast_in_main"
+              android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="6dp"
+              android:text="@string/tap_anywhere_to_select_a_video"
+              android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+              android:textColor="@color/grey" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="14dp"
+              android:text="@string/choose_video"
+              android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+              android:textColor="@color/green_light" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
 
           <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/ic_baseline_video_library_24"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/baseline_keyboard_arrow_right_24"
             app:tint="@color/green_dark" />
-
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/convert_video_to_gif_simple_and_fast_in_main"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
-
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/tap_anywhere_to_select_a_video"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColor="@color/grey" />
-
         </androidx.appcompat.widget.LinearLayoutCompat>
       </com.google.android.material.card.MaterialCardView>
 
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvVideoToMotionPhoto"
-        style="@style/Widget.Material3.CardView.Outlined"
+      <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+        android:text="@string/motion_photo_section"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark"
+        android:textStyle="bold" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
-
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_motion_photos_on_24"
-            app:tint="@color/green_dark" />
-
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/video_to_motion_photo"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
-
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvGifToMotionPhoto"
-        style="@style/Widget.Material3.CardView.Outlined"
+      <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvVideoToMotionPhoto"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginEnd="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
 
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_motion_photos_on_24"
-            app:tint="@color/green_dark" />
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gif_to_motion_photo"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_motion_photos_on_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
 
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvGifEdit"
-        style="@style/Widget.Material3.CardView.Outlined"
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="12dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/video_to_motion_photo"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/video_to_motion_photo_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvGifToMotionPhoto"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginStart="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
+
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_motion_photos_on_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="12dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/gif_to_motion_photo"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/gif_to_motion_photo_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+      </androidx.appcompat.widget.LinearLayoutCompat>
+
+      <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+        android:text="@string/gif_toolbox"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/dark"
+        android:textStyle="bold" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
-
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_edit_24"
-            app:tint="@color/green_dark" />
-
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gif_edit"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
-
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvGifSplit"
-        style="@style/Widget.Material3.CardView.Outlined"
+      <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvGifEdit"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginEnd="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
 
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_camera_24"
-            app:tint="@color/green_dark" />
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gif_split"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_edit_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
 
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvGifToVideo"
-        style="@style/Widget.Material3.CardView.Outlined"
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="@string/gif_edit"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="2dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/gif_edit_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvGifSplit"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginStart="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
+
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
+
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_camera_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="@string/gif_split"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="2dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/gif_split_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+      </androidx.appcompat.widget.LinearLayoutCompat>
+
+      <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+        android:layout_height="160dp"
+        android:layout_marginTop="12dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvGifToVideo"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginEnd="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
 
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_videocam_24"
-            app:tint="@color/green_dark" />
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/gif_to_video"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_videocam_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
 
-      <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcvMvimgToVideo"
-        style="@style/Widget.Material3.CardView.Outlined"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/light"
-        android:clickable="true"
-        android:focusable="true"
-        app:strokeColor="@color/green_dark">
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:text="@string/gif_to_video"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginStart="16dp"
-          android:gravity="center_vertical"
-          android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="2dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/gif_to_video_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
 
-          <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.75"
-            app:srcCompat="@drawable/baseline_motion_photos_on_24"
-            app:tint="@color/green_dark" />
+        <com.google.android.material.card.MaterialCardView
+          android:id="@+id/mcvMvimgToVideo"
+          style="@style/Widget.Material3.CardView.Outlined"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginStart="6dp"
+          android:layout_weight="1"
+          android:backgroundTint="@color/light"
+          android:clickable="true"
+          android:focusable="true"
+          app:strokeColor="@color/green_dark_quarter">
 
-          <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mvimg_to_gif"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+          <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-      </com.google.android.material.card.MaterialCardView>
+            <FrameLayout
+              android:layout_width="42dp"
+              android:layout_height="42dp"
+              android:background="@drawable/bg_home_tile_icon">
 
+              <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/baseline_motion_photos_on_24"
+                app:tint="@color/green_light" />
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/mvimg_to_gif"
+              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+              android:textColor="@color/dark"
+              android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="2dp"
+              android:ellipsize="end"
+              android:maxLines="2"
+              android:text="@string/mvimg_to_gif_hint"
+              android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+              android:textColor="@color/grey" />
+          </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+      </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
   </androidx.core.widget.NestedScrollView>
 

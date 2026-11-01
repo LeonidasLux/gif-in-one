@@ -4,6 +4,8 @@
   <color name="green_dark">#40a367</color>
   <color name="green_dark_half">#8040a367</color>
   <color name="green_dark_quarter">#4040a367</color>
+  <color name="green_card_surface">#1C2A20</color>
+  <color name="green_icon_surface">#2940A367</color>
   <color name="grey">#757874</color>
   <color name="grey_half">#80757874</color>
   <color name="grey_quarter">#40757874</color>

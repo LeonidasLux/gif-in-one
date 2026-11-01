@@ -155,4 +155,14 @@
   <string name="update_banner_available">A new version is available</string>
   <string name="update_banner_downloading">Downloading update</string>
   <string name="update_banner_downloaded">Update downloaded</string>
+  <string name="quick_start">Quick start</string>
+  <string name="motion_photo_section">Motion photos</string>
+  <string name="gif_toolbox">GIF toolbox</string>
+  <string name="choose_video">Choose a video</string>
+  <string name="video_to_motion_photo_hint">Turn a video into a gallery motion photo</string>
+  <string name="gif_to_motion_photo_hint">Turn a GIF into a gallery motion photo</string>
+  <string name="gif_edit_hint">Trim, speed, text, crop and color key</string>
+  <string name="gif_split_hint">Export GIF frames as images</string>
+  <string name="gif_to_video_hint">Convert a GIF into an MP4 video</string>
+  <string name="mvimg_to_gif_hint">Extract video from a motion photo</string>
 </resources>
