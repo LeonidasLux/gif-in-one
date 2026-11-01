@@ -4,10 +4,8 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import androidx.work.BackoffPolicy
-import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
-import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.leonidaslux.gifinone.BuildConfig
@@ -108,7 +106,6 @@ object AppUpdateManager {
       .putLong(UpdateDownloadWorker.INPUT_SIZE, update.size)
       .build()
     val request = OneTimeWorkRequest.Builder(UpdateDownloadWorker::class.java)
-      .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
       .setInputData(input)
       .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
       .build()
