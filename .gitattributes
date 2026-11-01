@@ -1,3 +1,5 @@
 .githooks/* text eol=lf
 scripts/*.py text eol=lf
 .github/workflows/*.yml text eol=lf
+gradlew text eol=lf
+gradlew.bat text eol=crlf
