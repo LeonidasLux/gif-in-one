@@ -16,6 +16,12 @@
   <string name="_240p">240P</string>
   <string name="_320p">320P</string>
   <string name="convert_video_to_gif_simple_and_fast_in_main">Video to GIF</string>
+  <string name="video_to_motion_photo">Video to Motion Photo</string>
+  <string name="gif_to_motion_photo">GIF to Motion Photo</string>
+  <string name="creating_motion_photo">Creating Motion Photo…</string>
+  <string name="creating_motion_photo_d_percent">Creating Motion Photo… (%d%%)</string>
+  <string name="motion_photo_saved_to_gallery">Motion photo saved to gallery</string>
+  <string name="motion_photo_conversion_failed">Motion photo creation failed</string>
   <string name="crop_free">Free</string>
   <string name="crop_square">Square</string>
   <string name="gif_duration_s">GIF duration: %s seconds</string>
@@ -39,7 +45,7 @@
   <string name="eula_line_2">GIF in One is an open source, ad-free, free-to-use GIF processing software.</string>
   <string name="eula_line_3">Disclaimer: This software is provided as is without warranty of any kind. The author is not responsible for any damages, claims or other liability arising out of the use or otherwise of the software.</string>
   <string name="_privacy_policy_">"Privacy Policy"</string>
-  <string name="privacy_policy_line_1">This software does not connect to the Internet, does not require any permissions, and does not collect any personal information.</string>
+  <string name="privacy_policy_line_1">GIF processing stays on your device. The app only connects to GitHub when checking for or downloading an update, and it does not collect personal information.</string>
   <string name="accept_license_above_to_use">Please read and agree to the above terms to start using it.</string>
   <string name="agree">Agree</string>
   <string name="gif_saved_to_gallery">GIF saved to gallery</string>
@@ -70,7 +76,7 @@
   <string name="got_it">Got it</string>
   <string name="whats_new">What\'s new</string>
   <string name="whats_new_t1">What\'s new</string>
-  <string name="whats_new_p1">Added save motion photo as video function\nPerformance optimization, saving 10~40% of time when exporting GIF\nInterface details optimized</string>
+  <string name="whats_new_p1">Added Video/GIF to Xiaomi-compatible Motion Photo\nAdded automatic GitHub Release update checks and background APK downloads\nDownloads are verified and can be installed from the home screen</string>
   <string name="whats_new_t2">Bug fixes</string>
   <string name="whats_new_p2">Fixed the issue of abnormal status bar color\nFixed the problem of no response when clicking the button on the add text page\nFixed crash issue in some cases\nFixed an issue with exported GIF colors being distorted in some cases</string>
   <string name="crop_ratio__">Ratio</string>
@@ -120,8 +126,33 @@
   <string name="github_com_leonidaslux_gif_in_one" translatable="false">github.com/LeonidasLux/gif-in-one</string>
   <string name="_cutegif_github_url" translatable="false">https://github.com/tasy5kg/CuteGIF</string>
   <string name="_open_source_project_used_links" translatable="false">github.com/androidx/androidx\ngithub.com/material-components/material-components-android\ngithub.com/bumptech/glide\ngithub.com/CanHub/Android-Image-Cropper\ngithub.com/arthenica/ffmpeg-kit\ngithub.com/Tencent/MMKV\ngithub.com/kohler/gifsicle\ngithub.com/santaevpavel/OutlineSpan</string>
-  <string name="eula_line_addition">This software is for learning and communication purposes. It does not access the network and does not provide Internet information services.</string>
+  <string name="eula_line_addition">This software is for learning and communication purposes. The only online request is to GitHub for application updates, and it does not provide Internet information services.</string>
   <string name="import_file_failed_please_try">File read failed, please try switching the file picker in the menu</string>
   <string name="save_as_video">Save as video</string>
   <string name="speed_warning_slower">ℹ️ For performance reasons, the current preview plays slower than the speed you selected. When exported later, the GIF will be generated at the speed you selected.</string>
+  <string name="app_update">App update</string>
+  <string name="check_for_updates">Check for updates</string>
+  <string name="checking_for_updates">Checking for updates…</string>
+  <string name="up_to_date">You are running the latest version.</string>
+  <string name="update_available_title">Version %s is available</string>
+  <string name="update_available_hint">Download and install the update from GitHub Releases.</string>
+  <string name="download_update">Download update</string>
+  <string name="later">Later</string>
+  <string name="downloading_update_d_percent">Downloading update… (%d%%)</string>
+  <string name="downloading_update">Downloading update…</string>
+  <string name="verifying_update">Verifying update package…</string>
+  <string name="retrying_update_download">Download interrupted. Retrying…</string>
+  <string name="update_downloaded_version">Version %s is ready to install\nTap “Install update” to open the system installer.</string>
+  <string name="install_update">Install update</string>
+  <string name="cancel_update_download">Cancel download</string>
+  <string name="update_download_cancelled">Update download cancelled</string>
+  <string name="update_install_permission_required">Allow GIF in One to install unknown apps, then return and tap “Install update”.</string>
+  <string name="update_install_failed_s">Unable to install update: %s</string>
+  <string name="update_check_failed_s">Update check failed: %s</string>
+  <string name="release_notes">Release notes</string>
+  <string name="no_release_notes">No release notes were provided.</string>
+  <string name="view_update">View update</string>
+  <string name="update_banner_available">A new version is available</string>
+  <string name="update_banner_downloading">Downloading update</string>
+  <string name="update_banner_downloaded">Update downloaded</string>
 </resources>

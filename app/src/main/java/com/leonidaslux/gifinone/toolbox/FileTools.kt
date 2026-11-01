@@ -68,7 +68,7 @@ object FileTools {
           )
         })
 
-      "gif", "png" -> MyApplication.appContext.contentResolver.insert(MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+      "gif", "png", "jpg", "jpeg" -> MyApplication.appContext.contentResolver.insert(MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
         ContentValues().apply {
           put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
           put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/${appName}")
@@ -79,6 +79,32 @@ object FileTools {
 
       else -> throw NotImplementedError("fileType = $fileType")
     }!!
+  }
+
+  /** Creates a pending JPEG entry so Gallery never scans a partially written Motion Photo. */
+  fun createNewMotionPhotoFile(fileNamePrefix: String?): Uri {
+    val appName = Toolbox.appGetString(R.string.app_name)
+    val fileName =
+      ("${fileNamePrefix}_").toEmptyStringIf { fileNamePrefix.isNullOrBlank() } + "${appName}_${Toolbox.getTimeYMDHMS()}.jpg"
+    return MyApplication.appContext.contentResolver.insert(
+      MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY),
+      ContentValues().apply {
+        put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
+        put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/${appName}")
+        put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+        put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis())
+        put(MediaStore.Images.Media.IS_PENDING, 1)
+      }
+    ) ?: throw IllegalStateException("Unable to create MediaStore image entry")
+  }
+
+  fun finishPendingFile(uri: Uri) {
+    MyApplication.appContext.contentResolver.update(
+      uri,
+      ContentValues().apply { put(MediaStore.Images.Media.IS_PENDING, 0) },
+      null,
+      null,
+    )
   }
 
   fun copyFile(srcPath: String, destUri: Uri, deleteSrc: Boolean = false) {

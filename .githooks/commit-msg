@@ -1,0 +1,15 @@
+#!/bin/sh
+
+runner=""
+if command -v python3 >/dev/null 2>&1; then
+  runner="python3"
+elif command -v python >/dev/null 2>&1; then
+  runner="python"
+fi
+
+if [ -z "$runner" ]; then
+  echo "未找到 Python，无法校验 Conventional Commits 提交信息。" >&2
+  exit 1
+fi
+
+exec "$runner" scripts/check_commit_message.py "$1"

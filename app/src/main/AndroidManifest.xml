@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
   <application
     android:name=".MyApplication"
     android:allowBackup="true"
@@ -35,6 +38,13 @@
       android:theme="@style/Theme.GifInOne.Dialog" />
     <activity
       android:name=".GifToVideoActivity"
+      android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|density|screenSize|smallestScreenSize"
+      android:exported="false"
+      android:launchMode="singleTask"
+      android:resizeableActivity="true"
+      android:theme="@style/Theme.GifInOne.Dialog" />
+    <activity
+      android:name=".MotionPhotoActivity"
       android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|density|screenSize|smallestScreenSize"
       android:exported="false"
       android:launchMode="singleTask"
@@ -131,6 +141,16 @@
         <data android:mimeType="video/*" />
       </intent-filter>
     </activity>
+
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/update_file_paths" />
+    </provider>
   </application>
 
 </manifest>

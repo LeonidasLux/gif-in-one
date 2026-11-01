@@ -19,3 +19,5 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+# WorkManager instantiates workers by their serialized class name.
+-keep class com.leonidaslux.gifinone.update.UpdateDownloadWorker { *; }

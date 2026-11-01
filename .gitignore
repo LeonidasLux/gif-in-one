@@ -11,6 +11,8 @@ local.properties
 *.jks
 *.keystore
 *.hprof
+__pycache__/
+*.pyc
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
@@ -19,3 +21,4 @@ captures/
 .cxx/
 *.apk
 output.json
+/dist/

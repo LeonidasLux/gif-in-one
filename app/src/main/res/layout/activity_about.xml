@@ -114,6 +114,92 @@
 
     <include layout="@layout/view_divider_horizontal" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:animateLayoutChanges="true"
+      android:orientation="vertical"
+      android:paddingHorizontal="16dp"
+      android:paddingVertical="16dp">
+
+      <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:orientation="vertical">
+
+          <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_update"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtvUpdateStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/check_for_updates"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/grey" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/mbCheckUpdates"
+          style="@style/Widget.Material3.Button.OutlinedButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="12dp"
+          android:text="@string/check_for_updates"
+          android:textColor="?attr/colorOnSurface" />
+      </androidx.appcompat.widget.LinearLayoutCompat>
+
+      <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/linearUpdateProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:indeterminate="false"
+        android:progress="0"
+        android:visibility="gone"
+        app:indicatorColor="@color/green_dark"
+        app:trackColor="@color/white" />
+
+      <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llUpdateActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/mbCancelUpdateDownload"
+          style="@style/Widget.Material3.Button.TextButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/cancel_update_download"
+          android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/mbInstallUpdate"
+          style="@style/Widget.Material3.Button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:text="@string/download_update" />
+      </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <include layout="@layout/view_divider_horizontal" />
+
     <com.google.android.material.textview.MaterialTextView
       android:id="@+id/mtvLegalInfo"
       android:layout_width="match_parent"

@@ -15,6 +15,8 @@ object MyConstants {
   val VIDEO_TO_GIF_PREVIEW_CACHE_DIR = "$CACHE_DIR_PATH/video_to_gif_preview_cache_dir/"
   val VIDSTABDETECT_RESULT_PATH = "$CACHE_DIR_PATH/transforms.trf"
   val VIDEO_TO_GIF_EXTRACTED_FRAMES_PATH = "$CACHE_DIR_PATH/extracted_frames/"
+  val MOTION_PHOTO_TEMP_MP4_PATH = "$CACHE_DIR_PATH/motion_photo_video.mp4"
+  val MOTION_PHOTO_COVER_PATH = "$CACHE_DIR_PATH/motion_photo_cover.jpg"
   val NATIVE_LIBRARY_DIR: String = appContext.applicationInfo.nativeLibraryDir
 
   const val EXTRA_TEXT_RENDER = "EXTRA_TEXT_RENDER"
@@ -27,8 +29,12 @@ object MyConstants {
   const val EXTRA_STACK_TRACE_STRING = "EXTRA_STACK_TRACE_STRING"
   const val EXTRA_ADD_TEXT_RENDER = "EXTRA_ADD_TEXT_RENDER"
   const val EXTRA_SAVED_FILE_URI = "EXTRA_SAVED_FILE_URI"
+  const val EXTRA_IS_MOTION_PHOTO = "EXTRA_IS_MOTION_PHOTO"
+  const val EXTRA_MOTION_PHOTO_VIDEO_PATH = "EXTRA_MOTION_PHOTO_VIDEO_PATH"
+  const val EXTRA_MOTION_PHOTO_SOURCE_IS_GIF = "EXTRA_MOTION_PHOTO_SOURCE_IS_GIF"
 
   const val MIME_TYPE_IMAGE_GIF = "image/gif"
+  const val MIME_TYPE_IMAGE_JPEG = "image/jpeg"
   const val MIME_TYPE_VIDEO_MP4 = "video/mp4"
 
   // Specifying "-hwaccel mediacodec" may result in slower decoding than "-hwaccel auto"

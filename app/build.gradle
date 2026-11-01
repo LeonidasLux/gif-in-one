@@ -3,9 +3,22 @@ plugins {
   id 'org.jetbrains.kotlin.android'
 }
 
+def releaseStorePath = System.getenv("ANDROID_KEYSTORE_PATH")
+def releaseStorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+def releaseKeyAlias = System.getenv("ANDROID_KEY_ALIAS")
+def releaseKeyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+def hasReleaseSigning = [releaseStorePath, releaseStorePassword, releaseKeyAlias, releaseKeyPassword].every { it }
+
 android {
   signingConfigs {
-    release {}
+    if (hasReleaseSigning) {
+      release {
+        storeFile file(releaseStorePath)
+        storePassword releaseStorePassword
+        keyAlias releaseKeyAlias
+        keyPassword releaseKeyPassword
+      }
+    }
   }
   packagingOptions {
     jniLibs {
@@ -29,13 +42,15 @@ android {
     compileSdk 34
     versionCode 261017134
     versionName '26.1017.0134'
-    signingConfig signingConfigs.debug
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     setProperty "archivesBaseName", "GIFinOne_${versionName}_${versionCode}"
   }
 
   buildTypes {
     release {
+      if (hasReleaseSigning) {
+        signingConfig signingConfigs.release
+      }
       minifyEnabled true
       shrinkResources true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -61,6 +76,17 @@ android {
   namespace 'com.leonidaslux.gifinone'
 }
 
+gradle.taskGraph.whenReady { taskGraph ->
+  def buildingRelease = taskGraph.allTasks.any {
+    it.project == project && it.name.toLowerCase().contains("release")
+  }
+  if (buildingRelease && !hasReleaseSigning) {
+    throw new GradleException(
+      "缺少 release 签名配置。请设置 ANDROID_KEYSTORE_PATH、ANDROID_KEYSTORE_PASSWORD、ANDROID_KEY_ALIAS 和 ANDROID_KEY_PASSWORD。"
+    )
+  }
+}
+
 dependencies {
 
   // libgifsicle.so has been imported into the jniLibs directory.
@@ -76,6 +102,7 @@ dependencies {
   implementation "com.vanniktech:android-image-cropper:4.5.0"
   implementation 'com.arthenica:ffmpeg-kit-full-gpl:6.0-2'
   implementation 'com.tencent:mmkv:1.3.4'
+  implementation 'androidx.work:work-runtime-ktx:2.9.0'
 
   annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
 

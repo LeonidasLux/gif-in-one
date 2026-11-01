@@ -21,9 +21,77 @@
 
   <include layout="@layout/view_divider_horizontal" />
 
+  <com.google.android.material.card.MaterialCardView
+    android:id="@+id/mcvUpdateBanner"
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_width="288dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="12dp"
+    android:backgroundTint="@color/grey_one_in_sixteen"
+    android:visibility="gone"
+    app:strokeColor="@color/green_dark">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="16dp">
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvUpdateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvUpdateMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/grey" />
+
+      <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/linearUpdateProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:indeterminate="false"
+        android:progress="0"
+        android:visibility="gone"
+        app:indicatorColor="@color/green_dark"
+        app:trackColor="@color/white" />
+
+      <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/mbUpdateDismiss"
+          style="@style/Widget.Material3.Button.TextButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/later" />
+
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/mbUpdateAction"
+          style="@style/Widget.Material3.Button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:text="@string/view_update" />
+      </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+  </com.google.android.material.card.MaterialCardView>
+
   <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="0dp"
+    android:layout_weight="1">
 
     <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="288dp"
@@ -38,6 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="288dp"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/light"
         android:clickable="true"
         android:focusable="true"
@@ -71,6 +140,80 @@
             android:text="@string/tap_anywhere_to_select_a_video"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
             android:textColor="@color/grey" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvVideoToMotionPhoto"
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/light"
+        android:clickable="true"
+        android:focusable="true"
+        app:strokeColor="@color/green_dark">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:layout_marginStart="16dp"
+          android:gravity="center_vertical"
+          android:orientation="horizontal">
+
+          <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.75"
+            app:srcCompat="@drawable/baseline_motion_photos_on_24"
+            app:tint="@color/green_dark" />
+
+          <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/video_to_motion_photo"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+      </com.google.android.material.card.MaterialCardView>
+
+      <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcvGifToMotionPhoto"
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/light"
+        android:clickable="true"
+        android:focusable="true"
+        app:strokeColor="@color/green_dark">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:layout_marginStart="16dp"
+          android:gravity="center_vertical"
+          android:orientation="horizontal">
+
+          <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.75"
+            app:srcCompat="@drawable/baseline_motion_photos_on_24"
+            app:tint="@color/green_dark" />
+
+          <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gif_to_motion_photo"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
       </com.google.android.material.card.MaterialCardView>

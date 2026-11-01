@@ -12,7 +12,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.leonidaslux.gifinone.MyConstants.EXTRA_SAVED_FILE_URI
+import com.leonidaslux.gifinone.MyConstants.EXTRA_IS_MOTION_PHOTO
+import com.leonidaslux.gifinone.MyConstants.EXTRA_MOTION_PHOTO_VIDEO_PATH
 import com.leonidaslux.gifinone.MyConstants.MIME_TYPE_IMAGE_GIF
+import com.leonidaslux.gifinone.MyConstants.MIME_TYPE_IMAGE_JPEG
 import com.leonidaslux.gifinone.MyConstants.MIME_TYPE_VIDEO_MP4
 import com.leonidaslux.gifinone.databinding.ActivityFileSavedBinding
 import com.leonidaslux.gifinone.toolbox.FileTools
@@ -28,17 +31,46 @@ import java.util.Locale
 class FileSavedActivity : BaseActivity() {
   private val binding by lazy { ActivityFileSavedBinding.inflate(layoutInflater) }
   private val fileUri by lazy { intent.getExtra<Uri>(EXTRA_SAVED_FILE_URI) }
+  private val isMotionPhoto by lazy { intent.getBooleanExtra(EXTRA_IS_MOTION_PHOTO, false) }
+  private val motionPhotoVideoPath by lazy { intent.getStringExtra(EXTRA_MOTION_PHOTO_VIDEO_PATH) }
 
   override fun onCreateIfEulaAccepted(savedInstanceState: Bundle?) {
     setContentView(binding.root)
     setFinishOnTouchOutside(false)
-    binding.mtvXxxSavedToGallery.text = getString(R.string._ext__saved_to_gallery, FileTools.FileName(fileUri).extension.uppercase(Locale.ROOT))
+    binding.mtvXxxSavedToGallery.text = if (isMotionPhoto) {
+      getString(R.string.motion_photo_saved_to_gallery)
+    } else {
+      getString(R.string._ext__saved_to_gallery, FileTools.FileName(fileUri).extension.uppercase(Locale.ROOT))
+    }
     when (fileUri.mimeType()) {
       MIME_TYPE_IMAGE_GIF -> {
         binding.acivPreview.visibility = VISIBLE
         binding.vvPreview.visibility = GONE
         Glide.with(this).load(fileUri).fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
           .transition(DrawableTransitionOptions.withCrossFade()).into(binding.acivPreview)
+      }
+
+      MIME_TYPE_IMAGE_JPEG -> {
+        if (isMotionPhoto && motionPhotoVideoPath != null) {
+          binding.acivPreview.visibility = GONE
+          binding.vvPreview.apply {
+            visibility = VISIBLE
+            setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE)
+            setOnPreparedListener {
+              it.apply {
+                setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT)
+                isLooping = true
+              }
+            }
+            setVideoPath(motionPhotoVideoPath)
+            start()
+          }
+        } else {
+          binding.acivPreview.visibility = VISIBLE
+          binding.vvPreview.visibility = GONE
+          Glide.with(this).load(fileUri).fitCenter().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+            .transition(DrawableTransitionOptions.withCrossFade()).into(binding.acivPreview)
+        }
       }
 
       MIME_TYPE_VIDEO_MP4 -> {
@@ -96,6 +128,15 @@ class FileSavedActivity : BaseActivity() {
     fun start(context: Context, fileUri: Uri) {
       context.startActivity(
         Intent(context, FileSavedActivity::class.java).putExtra(EXTRA_SAVED_FILE_URI, fileUri)
+      )
+    }
+
+    fun startMotionPhoto(context: Context, fileUri: Uri, motionPhotoVideoPath: String) {
+      context.startActivity(
+        Intent(context, FileSavedActivity::class.java)
+          .putExtra(EXTRA_SAVED_FILE_URI, fileUri)
+          .putExtra(EXTRA_IS_MOTION_PHOTO, true)
+          .putExtra(EXTRA_MOTION_PHOTO_VIDEO_PATH, motionPhotoVideoPath)
       )
     }
   }

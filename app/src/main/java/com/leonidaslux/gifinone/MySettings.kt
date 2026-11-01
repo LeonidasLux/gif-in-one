@@ -53,7 +53,7 @@ object MySettings {
 
   /** Note: This is accepted EULA license version code, not app version code.*/
   private const val KEY_INT_ACCEPTED_EULA_VERSION = "int_accepted_eula_version"
-  private const val INT_EULA_VERSION_LATEST = 202400000
+  private const val INT_EULA_VERSION_LATEST = 202611010
   var eulaAccepted
     get() = INT_EULA_VERSION_LATEST == getInt(KEY_INT_ACCEPTED_EULA_VERSION)
     set(value) = setInt(KEY_INT_ACCEPTED_EULA_VERSION, if (value) INT_EULA_VERSION_LATEST else null)
@@ -69,8 +69,13 @@ object MySettings {
     set(value) = setInt(KEY_INT_FILE_OPEN_WAY, value)
 
   private const val KEY_INT_WHATS_NEW_READ_VERSION = "int_read_changelog_version"
-  private const val INT_WHATS_NEW_VERSION_LATEST = 202403000
+  private const val INT_WHATS_NEW_VERSION_LATEST = 202611010
   var whatsNewRead
     get() = INT_WHATS_NEW_VERSION_LATEST == getInt(KEY_INT_WHATS_NEW_READ_VERSION)
     set(value) = setInt(KEY_INT_WHATS_NEW_READ_VERSION, if (value) INT_WHATS_NEW_VERSION_LATEST else null)
+
+  private const val KEY_STRING_DISMISSED_UPDATE_VERSION = "string_dismissed_update_version"
+  var dismissedUpdateVersion: String?
+    get() = getString(KEY_STRING_DISMISSED_UPDATE_VERSION)
+    set(value) = setString(KEY_STRING_DISMISSED_UPDATE_VERSION, value)
 }

@@ -73,32 +73,69 @@
   .\gradlew.bat :app:connectedDebugAndroidTest
   ```
 
-### 3. 提交后直接推送到主干
+### 3. 提交、推送与版本发布
 
-用户已确认：本仓库（GitHub `LeonidasLux/gif-in-one`）提交后直接推送到 `main` 主干分支，
-无需创建分支或发起 PR，也不需要再询问确认：
+- 用户说“提交”“提交推送”等提交意图时，默认直接提交并推送到当前主分支。
+- 当前项目默认主分支为 `main`；除非用户明确指定其他分支或 remote，否则直接推送
+  `origin/main`，无需再次确认。
+- 普通提交和推送不得触发 Android 版本发布工作流。
+- 只有用户明确说“提交并升级版本”或“打包 APK”时，才在提交推送后触发
+  `.github/workflows/release-android.yml`；未指定版本号时由工作流使用当前上海时间生成
+  下一个 `yy.MMdd.HHmm` 版本（在现有时间版本体系下等价于默认 `patch` 升级）。
+- 推送失败时先安全整合远端更新后重试，禁止使用强推覆盖远端历史。
+- 新提交必须使用 Conventional Commits：`类型(范围): 说明`，例如
+  `feat(update): 增加应用内后台更新`。
+- 允许的类型为 `feat`、`fix`、`perf`、`refactor`、`style`、`docs`、`test`、`build`、
+  `ci`、`chore`、`revert`；破坏性变更在类型后加 `!`，并在正文写明
+  `BREAKING CHANGE:`。
+- 提交标题应准确概括用户可见变化，说明使用简体中文，不超过 72 个字符；不要使用
+  “更新代码”等无法形成发布日志的描述。
+- 仓库启用 `.githooks/commit-msg` 校验。首次检出后可执行：
 
-```powershell
-git push -u origin HEAD:main
-```
+  ```powershell
+  git config core.hooksPath .githooks
+  ```
 
-### 4. 用户说"打包"时的完整流程：更新版本号 → 提交 → 构建 APK
+- GitHub Release 必须包含 `gif-in-one-arm64-v8a.apk`、`gif-in-one-x86_64.apk`、
+  对应 SHA-256 文件和 `update.json`，应用更新功能依赖这些固定资产名。
+- Android 应用更新下载不得发送系统通知；下载完成后必须在应用首页显示明确提示，
+  并提供可直接触发系统安装器的“立即更新”按钮。
 
-用户提到"打包 / 打包 apk"时，按以下步骤直接执行，不要询问确认，
-也不需要安装到模拟器或做额外验证（无需执行规则 1 的安装步骤）：
+### 4. “提交并升级版本” / “打包 APK”流程
 
-1. 更新 [app/build.gradle](app/build.gradle) 中的版本号（取当前时间）：
-   - `versionName`：`yy.MMdd.HHmm` 格式，如 `26.1017.0100`（年.月日.时分）
-   - `versionCode`：`yy*10000000 + MM*100000 + dd*1000 + HH*100 + mm`，
-     与 versionName 同一时间推导，保证递增（手机覆盖安装才能正常更新）
-2. 提交所有未提交的改动（含版本号变更），message 形如
-   `chore(release): 更新版本号至 26.1017.0100`，并按规则 3 直推 `main`
-3. 构建 release APK：
+用户明确要求发布版本时，按以下顺序执行，不再询问是否创建分支或 PR：
+
+1. 确认当前在 `main`，完成代码审查、单元测试和必要的设备测试。
+2. 提交所有未提交改动并推送：
 
    ```powershell
-   $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
-   .\gradlew.bat :app:assembleRelease
+   git push -u origin HEAD:main
    ```
 
-4. 把产物路径告知用户：`app\build\outputs\apk\release\`
-   （`arm64-v8a` 供真机、`x86_64` 供模拟器）
+3. 手动触发 GitHub Release 工作流；未指定版本号时留空，由工作流使用当前时间：
+
+   ```powershell
+   gh workflow run release-android.yml --ref main
+   ```
+
+   若用户给出 `yy.MMdd.HHmm` 版本号：
+
+   ```powershell
+   gh workflow run release-android.yml --ref main -f version_name=26.1101.1834
+   ```
+
+4. 等待工作流完成并检查结果：
+
+   ```powershell
+   gh run list --workflow release-android.yml --limit 1
+   gh run watch
+   ```
+
+5. 工作流负责更新 [app/build.gradle](app/build.gradle) 中的 `versionName` 和
+   `versionCode`、生成中文发布说明、构建两个 ABI 的签名 APK、提交版本变更、创建
+   `v版本号` 标签并发布 GitHub Release。不要同时在本地重复修改同一版本号。
+
+本地 release 构建必须设置 `ANDROID_KEYSTORE_PATH`、`ANDROID_KEYSTORE_PASSWORD`、
+`ANDROID_KEY_ALIAS` 和 `ANDROID_KEY_PASSWORD`。GitHub Actions 使用以下仓库 Secrets：
+`ANDROID_KEYSTORE_BASE64`、`ANDROID_KEYSTORE_PASSWORD`、`ANDROID_KEY_ALIAS`、
+`ANDROID_KEY_PASSWORD`。
