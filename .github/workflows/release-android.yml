@@ -95,6 +95,10 @@ jobs:
           echo "VERSION_CODE=$version_code" >> "$GITHUB_ENV"
 
       - name: Run unit tests and build signed release APKs
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: ./gradlew :app:testDebugUnitTest :app:assembleRelease --console=plain
 
       - name: Prepare release assets
